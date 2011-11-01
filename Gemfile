@@ -14,13 +14,12 @@ gem "acts_as_audited"
 gem "ar-extensions"
 gem "configatron"
 gem "curb"
-gem "fastercsv", "~>1.4.0"
+gem "fastercsv", "~>1.4.0", :platforms => :ruby_18
 gem "formtastic", "1.1.0"
-gem "mysql"
+gem "mysql", :platforms => [:ruby_18, :ruby_19]
 gem "spreadsheet"
-gem "will_paginate"
+gem "will_paginate", "~>2.3.16"
 gem 'net-ldap'
-gem 'carrierwave', "~>0.4.0"
 
 # This was once a plugin, now it's a gem:
 gem 'catch_cookie_exception', :git => 'git+ssh://git@github.com/mhartl/catch_cookie_exception.git'
@@ -52,6 +51,22 @@ gem "rack-acceptable", :require => 'rack/acceptable'
 gem "yajl-ruby", :require => 'yajl'
 gem "cancan"
 
+# Taken from Rails Gemfile
+platforms :jruby do
+ # gem "ruby-debug", ">= 0.10.3"
+  gem "json"
+  gem "activerecord-jdbcsqlite3-adapter", ">= 1.2.0"
+
+  # TODO: When the JRuby guys merge jruby-openssl in
+  # jruby this will be removed
+  gem "jruby-openssl"
+
+  group :db do
+    gem "activerecord-jdbcmysql-adapter", ">= 1.2.0"
+    gem "activerecord-jdbcpostgresql-adapter", ">= 1.2.0"
+  end
+end
+
 group :warehouse do
   #the most recent one that actually compiles
   gem "ruby-oci8", "1.0.7" 
@@ -61,7 +76,9 @@ end
 
 group :development do
   # The fake services run better with Mongrel
-  gem "mongrel", "~>1.1.5"
+
+  # gem "mongrel", "~>1.1.5", :platforms => :ruby_18
+  gem "mongrel", "~>1.2.0.pre2", :platforms => :ruby_19
 
   gem "flay"
   gem "flog"
@@ -70,7 +87,8 @@ group :development do
   #gem "rcov_rails" # gem only for Rails 3, plugin for Rails 2.3 :-/
   # ./script/plugin install http://svn.codahale.com/rails_rcov
 
-  gem "ruby-debug"
+  gem "ruby-debug", :platforms => :ruby_18
+  gem "ruby-debug19", :platforms => :ruby_19
   gem "utility_belt"
 #  gem 'rack-perftools_profiler', '~> 0.1', :require => 'rack/perftools_profiler'
 #  gem 'rbtrace', :require => 'rbtrace'
