@@ -20,6 +20,7 @@ gem "mysql"
 gem "spreadsheet"
 gem "will_paginate"
 gem 'net-ldap'
+gem 'carrierwave', "~>0.4.0"
 
 # This was once a plugin, now it's a gem:
 gem 'catch_cookie_exception', :git => 'git+ssh://git@github.com/mhartl/catch_cookie_exception.git'
@@ -51,6 +52,18 @@ gem "rack-acceptable", :require => 'rack/acceptable'
 gem "yajl-ruby", :require => 'yajl'
 gem "cancan"
 
+platforms :jruby do
+ # gem "ruby-debug", ">= 0.10.3"
+  gem "json"
+ 
+  # TODO: When jruby-openssl merged with JRuby then remove this
+  gem "jruby-openssl"
+
+  group :db do
+    gem "activerecord-jdbcmysql-adapter", ">= 1.2.0"
+  end
+end
+
 group :warehouse do
   #the most recent one that actually compiles
   gem "ruby-oci8", "1.0.7" 
@@ -70,6 +83,7 @@ group :development do
   # ./script/plugin install http://svn.codahale.com/rails_rcov
 
   gem "ruby-debug"
+  gem "ruby-debug19", :platforms => :ruby_19
   gem "utility_belt"
 #  gem 'rack-perftools_profiler', '~> 0.1', :require => 'rack/perftools_profiler'
 #  gem 'rbtrace', :require => 'rbtrace'
