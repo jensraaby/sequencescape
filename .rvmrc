@@ -1,1 +1,1 @@
-rvm use jruby@sequencescape --create
+rvm use rbx-head@sequencescape --create
