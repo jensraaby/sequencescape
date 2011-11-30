@@ -51,10 +51,6 @@ GEM
       rack (~> 1.1.0)
     activerecord (2.3.11)
       activesupport (= 2.3.11)
-    activerecord-jdbc-adapter (1.2.1)
-    activerecord-jdbcmysql-adapter (1.2.1)
-      activerecord-jdbc-adapter (~> 1.2.1)
-      jdbc-mysql (~> 5.1.0)
     activerecord-oracle_enhanced-adapter (1.2.3)
       activerecord (>= 2.0.0)
     activeresource (2.3.11)
@@ -70,7 +66,6 @@ GEM
       builder
       mime-types
       xml-simple
-    bouncy-castle-java (1.5.0146.1)
     builder (3.0.0)
     cancan (1.6.7)
     capybara (0.3.9)
@@ -128,9 +123,6 @@ GEM
     gherkin (2.6.8-java)
       json (>= 1.4.6)
     i18n (0.6.0)
-    jdbc-mysql (5.1.13)
-    jruby-openssl (0.7.4)
-      bouncy-castle-java
     json (1.6.2)
     json (1.6.2-java)
     launchy (2.0.5)
@@ -178,11 +170,13 @@ GEM
       activesupport (= 2.3.11)
       rake (>= 0.8.3)
     rake (0.9.2.2)
+    rcov (0.9.11)
     rgl (0.4.0)
       rake
       stream (>= 0.5)
     roodi (2.1.0)
       ruby_parser
+    ruby-debug (0.10.47)
     ruby-debug-base19 (0.11.25)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -234,7 +228,6 @@ PLATFORMS
 
 DEPENDENCIES
   aasm (= 2.1.5)
-  activerecord-jdbcmysql-adapter (>= 1.2.0)
   activerecord-oracle_enhanced-adapter (= 1.2.3)
   acts-as-dag!
   acts_as_audited
@@ -258,8 +251,6 @@ DEPENDENCIES
   flay
   flog
   formtastic (~> 1.2.0)
-  jruby-openssl
-  json
   launchy
   log4r
   mocha
@@ -271,8 +262,10 @@ DEPENDENCIES
   parallel_tests
   rack-acceptable
   rails (= 2.3.11)
+  rcov
   rgl
   roodi
+  ruby-debug
   ruby-debug19
   ruby-oci8 (= 1.0.7)
   ruby_walk (>= 0.0.3)!

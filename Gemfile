@@ -13,14 +13,14 @@ gem "aasm", "2.1.5"
 gem "acts_as_audited"
 gem "ar-extensions"
 gem "configatron"
-gem "curb", "0.7.15" # 0.7.16 would not compile (JRuby on OS X 10.5)
+gem "curb", "0.7.15" # 0.7.16 would not compile
 gem "fastercsv", "~>1.4.0"
 gem "formtastic", "~>1.2.0"
-gem "mysql", :platforms => [:ruby_18, :ruby_19]
+gem "mysql", :platforms => [:ruby]
 gem "spreadsheet"
 gem "will_paginate", "~>2.3.0"
 gem 'net-ldap'
-gem 'carrierwave', "~>0.4.0"
+gem 'carrierwave', "~>0.4.0" # 0.5 is only compatible with Rails 3
 
 # This was once a plugin, now it's a gem:
 gem 'catch_cookie_exception', :git => 'git+ssh://git@github.com/mhartl/catch_cookie_exception.git'
@@ -49,18 +49,6 @@ gem "rack-acceptable", :require => 'rack/acceptable'
 gem "yajl-ruby", :require => 'yajl'
 gem "cancan"
 
-platforms :jruby do
- # gem "ruby-debug", ">= 0.10.3"
-  gem "json"
- 
-  # TODO: When jruby-openssl merged with JRuby then remove this
-  gem "jruby-openssl"
-
-  group :db do
-    gem "activerecord-jdbcmysql-adapter", ">= 1.2.0"
-  end
-end
-
 group :warehouse do
   #the most recent one that actually compiles
   gem "ruby-oci8", "1.0.7" 
@@ -75,11 +63,11 @@ group :development do
   gem "flay"
   gem "flog"
   gem "roodi"
-  # gem "rcov", :require => false
+  gem "rcov", :require => false, :platforms => :mri
   #gem "rcov_rails" # gem only for Rails 3, plugin for Rails 2.3 :-/
   # ./script/plugin install http://svn.codahale.com/rails_rcov
 
-  #gem "ruby-debug"
+  gem "ruby-debug", :platforms => :mri
   gem "ruby-debug19", :platforms => :ruby_19
   gem "utility_belt"
 #  gem 'rack-perftools_profiler', '~> 0.1', :require => 'rack/perftools_profiler'
