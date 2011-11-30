@@ -34,9 +34,6 @@ gem "acts-as-dag", :git => "git+ssh://git@github.com/sanger/acts-as-dag.git", :b
 # Better table alterations
 gem "alter_table", :git => "git+ssh://git@github.com/sanger/alter_table.git"
 
-# QC poller / ActiveMQ
-gem "activemessaging"
-gem "stomp"
 
 # For background processing
 gem "delayed_job", '~>2.0.4'
