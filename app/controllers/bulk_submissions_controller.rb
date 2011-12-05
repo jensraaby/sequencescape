@@ -16,8 +16,8 @@ class BulkSubmissionsController < ApplicationController
     if @bulk_submission.valid?
       flash[:notice]  = "File was processed successfully"
       sub_ids,@sub_details = @bulk_submission.completed_submissions
+      debugger
       @these_subs     = Submission.find(sub_ids)
-      #Submission.all(:conditions => ["created_at > :lastminute", { :lastminute => Time.now - 1.day}])
  
     else
       #flash[:error] = "There was a problem with your upload"
