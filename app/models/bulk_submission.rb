@@ -7,7 +7,7 @@ class ActiveRecord::Base
     end
 
     def find_all_by_id_or_name(ids, names)
-      return find(*ids) unless ids.blank?
+      return Array(find(*ids)) unless ids.blank?
       raise StandardError, "Must specify at least an ID or a name" if names.blank?
       find_all_by_name(names).tap do |found|
         missing = names - found.map(&:name)
@@ -93,7 +93,7 @@ class BulkSubmission < ActiveRecord::Base
               submission.built!
               # Collect successful submissions
               @submission_ids << submission.id
-              @completed_submissions[submission.id] = Array("Submission #{submission.id} built (#{submission.orders.count} orders):",@orders[submission.name])
+              @completed_submissions[submission.id] = "Submission #{submission.id} built (#{submission.orders.count} orders)"
             else
               errors.add :spreadsheet, "Cannot find user #{orders.first["user login"].inspect}"
             end
@@ -211,9 +211,6 @@ class BulkSubmission < ActiveRecord::Base
       lane_request_type = request_types.detect { |t| t.target_asset_type == 'Lane' or t.name =~ /\ssequencing$/ }
       number_of_lanes   = details.fetch('number of lanes', 1).to_i
       attributes[:request_options][:multiplier] = { lane_request_type.id => number_of_lanes } if lane_request_type.present?
-
-      # Provide information for user feedback
-      @orders.push Hash[details['submission name'], "Order created from rows #{details['rows']} (should make #{number_of_lanes} lanes)"]
       
       # Create the order.  Ensure that the number of lanes is correctly set.
       template          = SubmissionTemplate.find_by_name(details['template name']) or raise StandardError, "Cannot find template #{details['template name']}"
@@ -224,7 +221,6 @@ class BulkSubmission < ActiveRecord::Base
 
     rescue => exception
       errors.add :spreadsheet, "There was a problem on row(s) #{details['rows']}: #{exception.message}"
-      @failures = true
       nil
 
     rescue QuotaException => exception
