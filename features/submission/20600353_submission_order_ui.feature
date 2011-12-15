@@ -7,15 +7,35 @@ Feature: Submission and Order Creation
 		Given I am an "administrator" user logged in as "John Smith"
 		And I am on the Submissions Inbox page
 
-
-	Scenario: Building a Submission without any orders from scratch
-		Given I follow "new Submission"
-			And I find a Project using a few characters of the Financial Project Name
-			And I find a Study using a few character of the Study Name
-			And I select the first template from the template list
-		Then I am presented with the Templates submission requirements
-		Given I then agree to the Submission Requirements
-			And I set the correct Submission Parameters for the template
-		Then I am ready to add Orders to the Project
-
 	# Scenario: Finishing an already started Submission
+
+  Scenario: Building a submission for a study
+    Given I am on a study management page
+      And I follow "new submission"
+      Then I should be able to choose a submission template
+    When I have chosen a submission template
+      And I have filled in the template options
+      Then I should see a blank order form
+    When I have selected an asset group for the order
+      And I have chosen a project with quota
+      And I have saved the order
+      Then I should be able to build the submission
+    When I have built the submission
+      Then I should see it in the study's submissions inbox
+
+  Scenario: Adding an order to an already started submission
+    Given I have started a submission
+      Then I should see existing orders in the submission
+      And I should be able to add an order
+    When I have added a new order
+      And I have saved the new order
+      Then I should see it in the Submissions Inbox
+      
+  Scenario: Manually choosing assets for an order
+    Given I have started a submission
+      Then I should see a blank order form
+    When I have typed in asset names for the order
+      And I have chosen a project with quota
+      And I have saved the order
+      Then I should be able to build the submission
+      
