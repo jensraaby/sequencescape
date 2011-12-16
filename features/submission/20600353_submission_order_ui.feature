@@ -38,4 +38,3 @@ Feature: Submission and Order Creation
       And I have chosen a project with quota
       And I have saved the order
       Then I should be able to build the submission
-      
