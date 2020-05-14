@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem "rails", "2.3.11"
+gem "rails", "5.0.0"
 
 # Warehouse builder
 gem "log4r"
-gem "db-charmer"
+gem "db-charmer", ">= 1.7.0"
 # 1.1 activated by rails
 #gem "rack", "~>1.2"
 
@@ -15,7 +15,7 @@ gem "ar-extensions"
 gem "configatron"
 gem "curb"
 gem "fastercsv", "~>1.4.0"
-gem "formtastic", "~>1.2.0"
+gem "formtastic", "~> 1.2.4"
 gem "mysql"
 gem "spreadsheet"
 gem "will_paginate"
@@ -46,8 +46,8 @@ gem "ruby_walk",  ">= 0.0.3",:git => "git+ssh://git@github.com/sanger/ruby_walk"
 
 # For the API level
 gem "uuidtools"
-gem "sinatra", "~>1.1.0"
-gem "rack-acceptable", :require => 'rack/acceptable'
+gem "sinatra", "~> 2.0.0"
+gem "rack-acceptable", ">= 0.1.0", :require => 'rack/acceptable'
 gem "yajl-ruby", :require => 'yajl'
 gem "cancan"
 
@@ -93,7 +93,7 @@ end
 group :cucumber do
   # We only need to bind cucumber-rails here, the rest are its dependencies which means it should be
   # making sensible choices.  Should ...
-  gem "capybara", "~>0.3.9", :require => false
+  gem "capybara", "~> 0.3.9", :require => false
   gem "database_cleaner", :require => false
   gem "cucumber", :require => false
   gem "cucumber-rails", "~>0.3.2", :require => false
