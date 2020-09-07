@@ -95,8 +95,8 @@ group :cucumber do
   # making sensible choices.  Should ...
   gem "capybara", "~>0.3.9", :require => false
   gem "database_cleaner", :require => false
-  gem "cucumber", :require => false
-  gem "cucumber-rails", "~>0.3.2", :require => false
+  gem "cucumber", ">= 4.0.0", :require => false
+  gem "cucumber-rails", "~> 0.3.2", :require => false
 end
 
 group :deployment do
