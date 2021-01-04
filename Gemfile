@@ -81,7 +81,7 @@ group :test do
   gem "factory_girl", '~>1.3.1'
   gem "launchy"
   gem "mocha", :require => false # avoids load order problems
-  gem "nokogiri"
+  gem "nokogiri", ">= 1.11.0"
   gem "shoulda", "~>2.10.0"
   gem "timecop"
   gem "treetop", "~>1.2.5"
@@ -93,7 +93,7 @@ end
 group :cucumber do
   # We only need to bind cucumber-rails here, the rest are its dependencies which means it should be
   # making sensible choices.  Should ...
-  gem "capybara", "~>0.3.9", :require => false
+  gem "capybara", "~> 0.3.9", :require => false
   gem "database_cleaner", :require => false
   gem "cucumber", :require => false
   gem "cucumber-rails", "~>0.3.2", :require => false
