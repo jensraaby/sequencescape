@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem "rails", "2.3.11"
+gem "rails", "6.0.3.5"
 
 # Warehouse builder
 gem "log4r"
-gem "db-charmer"
+gem "db-charmer", ">= 1.7.0"
 # 1.1 activated by rails
 #gem "rack", "~>1.2"
 
