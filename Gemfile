@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem "rails", "6.0.3.5"
+gem "rails", "4.0.0"
 
 # Warehouse builder
 gem "log4r"
@@ -10,7 +10,7 @@ gem "db-charmer", ">= 1.7.0"
 #gem "rack", "~>1.2"
 
 gem "aasm", "2.1.5"
-gem "acts_as_audited"
+gem "acts_as_audited", ">= 1.1.1"
 gem "ar-extensions"
 gem "configatron"
 gem "curb"
@@ -55,7 +55,7 @@ group :warehouse do
   #the most recent one that actually compiles
   gem "ruby-oci8", "1.0.7" 
   #any newer version requires ruby-oci8 => 2.0.1
-  gem "activerecord-oracle_enhanced-adapter" , "1.2.3" 
+  gem "activerecord-oracle_enhanced-adapter" , "1.2.3"
 end
 
 group :development do
